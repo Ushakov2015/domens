@@ -1,0 +1,27 @@
+import re
+import whois
+from urllib.parse import urlparse
+
+pattern = re.compile('https:[\/0-9a-zа-я\.\-_]+')
+domain_list=list()
+
+filename= open("csv.txt","r")
+fileout = open('result.txt', 'w')
+             
+for line in filename:
+    domain_list.extend(pattern.findall(line))
+
+for item in domain_list:
+    domain=urlparse(item)
+    fileout.write(domain.netloc+'\n')
+    print(domain.netloc)
+    
+fileout.close()
+
+#filename= open("csv.txt","r")
+#for line in filename:
+#    print(line)
+#filename.close()
+
+#domain=whois.whois('learn.javascript.ru')
+#print(domain)
